@@ -8,3 +8,6 @@
 hs_err_pid*
 /bin/
 /target/
+
+# jre tar bundles
+jre*.tar.gz

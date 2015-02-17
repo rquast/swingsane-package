@@ -18,11 +18,17 @@
 		<swingSaneName>SwingSane</swingSaneName>
 		<swingSaneMainClass>com.swingsane.gui.Main</swingSaneMainClass>
 		<installerMainClass>com.swingsane.installer.Main</installerMainClass>
-		<windowsVersion>0.1.0.0</windowsVersion>
+		<windowsVersion>0.2.0.0</windowsVersion>
 		<macJavaArchive>jre-8u31-macosx-x64</macJavaArchive>
 		<macJava>jre1.8.0_31.jre</macJava>
 		<win32JavaArchive>jre-8u31-windows-i586</win32JavaArchive>
 		<win32Java>jre1.8.0_31</win32Java>
+		<win64JavaArchive>jre-8u31-windows-x64</win64JavaArchive>
+		<win64Java>jre1.8.0_31</win64Java>
+		<linux32JavaArchive>jre-8u31-linux-i586</linux32JavaArchive>
+		<linux32Java>jre1.8.0_31</linux32Java>
+		<linux64JavaArchive>jre-8u31-linux-x64</linux64JavaArchive>
+		<linux64Java>jre1.8.0_31</linux64Java>
 	</properties>
 
 	<build>

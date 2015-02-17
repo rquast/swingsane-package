@@ -70,7 +70,7 @@
 							<stayAlive>true</stayAlive>
 							<icon>${basedir}/icons/swingsane.ico</icon>
 							<outfile>${project.build.directory}/swingsane.exe</outfile>
-							<jar>lib/swingsane.jar</jar>
+							<jar>lib/swingsane-${project.version}.jar</jar>
 							<jre>
 								<path>jre/</path>
 								<minVersion>1.7.0</minVersion>
@@ -204,26 +204,6 @@
 						</configuration>
 					</execution>
 					<execution>
-						<id>update-app-bundle-into-uberjar</id>
-						<phase>package</phase>
-						<goals>
-							<goal>run</goal>
-						</goals>
-						<configuration>
-							<tasks>
-								<path id="compile.classpath">
-									<fileset dir="${project.build.directory}/appbundle/lib">
-										<include name="**/*" />
-									</fileset>
-								</path>
-								<pathconvert property="mf.classpath" pathsep=" ">
-									<path refid="compile.classpath" />
-									<flattenmapper />
-								</pathconvert>
-							</tasks>
-						</configuration>
-					</execution>
-					<execution>
 						<id>create-a-windows-signed-nsis-installer</id>
 						<phase>package</phase>
 						<goals>
@@ -260,7 +240,7 @@
 								</exec>
 								-->
 						
-								<copy file="${basedir}/setup_unsigned.exe" tofile="${project.build.directory}/swingsane_setup_${project.version}.exe" />
+								<copy file="${basedir}/setup_unsigned.exe" tofile="${project.build.directory}/swingsane_setup_i586_${project.version}.exe" />
 						
 								<!--  enable for codesigning
 								<exec executable="/usr/local/bin/osslsigncode" osfamily="unix">
@@ -271,7 +251,7 @@
 									<arg value="-in" />
 									<arg value="${basedir}/setup_unsigned.exe" />
 									<arg value="-out" />
-									<arg value="${project.build.directory}/swingsane_setup_${project.version}.exe" />
+									<arg value="${project.build.directory}/swingsane_setup_i586_${project.version}.exe" />
 								</exec>
 								-->
 						

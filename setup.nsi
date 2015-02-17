@@ -2,7 +2,7 @@ Name SwingSane
 
 # General Symbol Definitions
 !define REGKEY "SOFTWARE\$(^Name)"
-!define VERSION 0.1
+!define VERSION 0.2
 !define COMPANY "Roland Quast"
 !define URL http://www.swingsane.com
 

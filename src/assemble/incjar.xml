@@ -10,7 +10,9 @@
 			<scope>runtime</scope>
 			<useProjectArtifact>false</useProjectArtifact>
 			<outputDirectory>/lib/</outputDirectory>
+			<!--
 			<outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
+			-->
 		</dependencySet>
 	</dependencySets>
 	<fileSets>
@@ -27,16 +29,15 @@
 			<outputDirectory>/</outputDirectory>
 		</fileSet>
 		<fileSet>
-			<directory>${basedir}/linux</directory>
+			<directory>${basedir}/platform/linux</directory>
 			<outputDirectory>/</outputDirectory>
 		</fileSet>
 		<fileSet>
 			<directory>${basedir}</directory>
 			<includes>
-				<include>LICENSE</include>
 				<include>NOTICE</include>
 			</includes>
-			<outputDirectory>${basedir}</outputDirectory>
+			<outputDirectory>/license/</outputDirectory>
 		</fileSet>
 		<fileSet>
 			<directory>${basedir}/icons</directory>

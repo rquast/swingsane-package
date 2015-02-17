@@ -19,10 +19,10 @@
 		<swingSaneMainClass>com.swingsane.gui.Main</swingSaneMainClass>
 		<installerMainClass>com.swingsane.installer.Main</installerMainClass>
 		<windowsVersion>0.1.0.0</windowsVersion>
-		<macJavaArchive>jre-8u20-macosx-x64</macJavaArchive>
-		<macJava>jre1.8.0_20.jre</macJava>
-		<win32JavaArchive>jre-8u20-windows-i586</win32JavaArchive>
-		<win32Java>jre1.8.0_20</win32Java>
+		<macJavaArchive>jre-8u31-macosx-x64</macJavaArchive>
+		<macJava>jre1.8.0_31.jre</macJava>
+		<win32JavaArchive>jre-8u31-windows-i586</win32JavaArchive>
+		<win32Java>jre1.8.0_31</win32Java>
 	</properties>
 
 	<build>

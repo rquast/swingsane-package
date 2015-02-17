@@ -9,7 +9,7 @@ Name SwingSane
 !define upgradecode {A69D7404-9F52-447A-AE0B-BD66F09D96CF} ; SwingSane MSI upgrade code
 
 # MUI Symbol Definitions
-!define MUI_ICON "icons\swingsane_package_icon.ico"
+!define MUI_ICON "icons\swingsane_package.ico"
 !define MUI_FINISHPAGE_NOAUTOCLOSE
 !define MUI_LICENSEPAGE_RADIOBUTTONS
 !define MUI_STARTMENUPAGE_REGISTRY_ROOT HKLM
@@ -17,7 +17,7 @@ Name SwingSane
 !define MUI_STARTMENUPAGE_REGISTRY_KEY ${REGKEY}
 !define MUI_STARTMENUPAGE_REGISTRY_VALUENAME StartMenuGroup
 !define MUI_STARTMENUPAGE_DEFAULTFOLDER SwingSane
-!define MUI_UNICON "icons\swingsane_package_icon.ico"
+!define MUI_UNICON "icons\swingsane_package.ico"
 !define MUI_UNFINISHPAGE_NOAUTOCLOSE
 !define JRE_VERSION "1.7.0"
 

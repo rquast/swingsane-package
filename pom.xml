@@ -17,6 +17,7 @@
 		<copyright>Copyright (c) 2014-2015 Roland Quast and Contributors.</copyright>
 		<swingSaneName>SwingSane</swingSaneName>
 		<swingSaneMainClass>com.swingsane.gui.Main</swingSaneMainClass>
+		<installerMainClass>com.swingsane.installer.Main</installerMainClass>
 		<windowsVersion>0.1.0.0</windowsVersion>
 		<macJavaArchive>jre-8u20-macosx-x64</macJavaArchive>
 		<macJava>jre1.8.0_20.jre</macJava>
@@ -157,7 +158,7 @@
 									src="${project.build.directory}/swingsane_setup_${project.version}.jar"
 									dest="${project.build.directory}/appbundle" />
 			
-								<taskdef name="bundleapp" classpath="${basedir}/osx/appbundler-1.0ea.jar"
+								<taskdef name="bundleapp" classpath="${basedir}/platform/osx/appbundler-1.0ea.jar"
 									classname="com.oracle.appbundler.AppBundlerTask" />
 			
 								<path id="compile.classpath">
@@ -192,55 +193,6 @@
 			
 									<option value="-Xmx1024M" name="Xmx" />
 								</bundleapp>
-			
-								<bundleapp classpathref="compile.classpath"
-									outputdirectory="${project.build.directory}/app/SwingSane.app/Contents/Resources"
-									name="${swingSaneServerName}" displayname="${swingSaneServerName}"
-									executableName="${swingSaneServerName}" identifier="com.swingsane.server"
-									shortversion="${project.version}" version="${project.version}"
-									icon="${basedir}/icons/swingsane_server.icns" mainclassname="${swingSaneServerMainClass}"
-									copyright="${copyright}" applicationCategory="public.app-category.productivity">
-			
-									<runtime dir="${project.build.directory}/${macJava}/Contents/Home" />
-			
-									<arch name="x86_64" />
-			
-									<!-- Workaround since the icon parameter for bundleapp doesn't work -->
-									<option value="-Xdock:icon=Contents/Resources/swingsane_server.icns" />
-			
-									<option value="-Dapple.laf.useScreenMenuBar=true" />
-									<option value="-Dcom.apple.macos.use-file-dialog-packages=true" />
-									<option value="-Dcom.apple.macos.useScreenMenuBar=true" />
-									<option value="-Dapple.awt.application.name=${swingSaneServerName}" />
-									<option
-										value="-Dcom.apple.mrj.application.apple.menu.about.name=${swingSaneServerName}" />
-									<option value="-Dcom.apple.smallTabs=true" />
-									<option value="-Dfile.encoding=UTF-8" />
-			
-									<option value="-Xmx512M" name="Xmx" />
-								</bundleapp>
-			
-								<delete
-									dir="${project.build.directory}/app/${swingSaneName}.app/Contents/Resources/${swingSaneServerName}.app/Contents/Java" />
-								<delete
-									dir="${project.build.directory}/app/${swingSaneName}.app/Contents/Resources/${swingSaneServerName}.app/Contents/PlugIns/${macJava}" />
-			
-								<exec executable="unzip" spawn="false">
-									<arg
-										line="-o ${basedir}/osx/frscanner.zip -d ${project.build.directory}/app/${swingSaneName}.app/Contents/Resources" />
-								</exec>
-			
-								<exec
-									dir="${project.build.directory}/app/${swingSaneName}.app/Contents/Resources/${swingSaneServerName}.app/Contents/PlugIns"
-									executable="ln" spawn="false">
-									<arg line="-s ../../../../PlugIns/${macJava}" />
-								</exec>
-			
-								<exec
-									dir="${project.build.directory}/app/${swingSaneName}.app/Contents/Resources/${swingSaneServerName}.app/Contents"
-									executable="ln" spawn="false">
-									<arg line="-s ../../../Java" />
-								</exec>
 
 							</tasks>
 						</configuration>
@@ -262,17 +214,6 @@
 									<path refid="compile.classpath" />
 									<flattenmapper />
 								</pathconvert>
-								<jar jarfile="${project.build.directory}/appbundle/lib/swingsane_server.jar">
-									<manifest>
-										<attribute name="Main-Class" value="${swingSaneServerMainClass}" />
-										<attribute name="Class-Path" value="${mf.classpath}" />
-									</manifest>
-								</jar>
-								<jar jarfile="${project.build.directory}/swingsane_setup_${project.version}.jar" update="true">
-									<fileset dir="${project.build.directory}/appbundle">
-										<include name="lib/swingsane_server.jar" />
-									</fileset>
-								</jar>
 							</tasks>
 						</configuration>
 					</execution>
@@ -302,6 +243,7 @@
 									<arg value="${basedir}/setup.nsi" />
 								</exec>
 						
+								<!--  enable for codesigning
 								<exec executable="${basedir}/windows/codesign/signtool.exe" osfamily="winnt">
 									<arg value="sign" />
 									<arg value="/f" />
@@ -310,9 +252,11 @@
 									<arg value="http://timestamp.verisign.com/scripts/timstamp.dll" />
 									<arg value="${basedir}/setup_unsigned.exe" />
 								</exec>
+								-->
 						
 								<copy file="${basedir}/setup_unsigned.exe" tofile="${project.build.directory}/swingsane_setup_${project.version}.exe" />
 						
+								<!--  enable for codesigning
 								<exec executable="/usr/local/bin/osslsigncode" osfamily="unix">
 									<arg value="-pkcs12" />
 									<arg value="${basedir}/windows/codesign/cs.pfx" />
@@ -323,6 +267,7 @@
 									<arg value="-out" />
 									<arg value="${project.build.directory}/swingsane_setup_${project.version}.exe" />
 								</exec>
+								-->
 						
 								<delete file="${basedir}/setup_unsigned.exe" />
 							</tasks>
@@ -347,20 +292,19 @@
 								<if>
 									<istrue value="${isMac}" />
 									<then>
-										<exec
-											dir="${project.build.directory}/app/${swingSaneName}.app/Contents/Resources"
-											executable="/usr/bin/codesign" spawn="false">
-											<arg line='-s "${developerID}" ${swingSaneServerName}.app' />
-										</exec>
+									    <!-- enable for codesigning
 										<exec dir="${project.build.directory}/app" osfamily="mac"
 											executable="/usr/bin/codesign" spawn="false">
 											<arg line='-s "${developerID}" ${swingSaneName}.app' />
 										</exec>
+										-->
+										<!-- enable for DMG Canvas
 										<exec dir="${project.build.directory}/app" executable="/usr/local/bin/dmgcanvas"
 											osfamily="mac" spawn="false">
 											<arg
 												line='${basedir}/osx/DMG_Canvas/SwingSane.dmgCanvas ${project.build.directory}/${swingSaneName}.dmg' />
 										</exec>
+										-->
 									</then>
 									<else>
 									</else>

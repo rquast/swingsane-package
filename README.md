@@ -4,7 +4,7 @@ Packaging scripts for [SwingSane](https://github.com/rquast/swingsane).
 ## Requirements
 
 1. SwingSane source code.
-1. Maven 2.
+1. Maven 3.
 2. JDK 7 or higher.
 3. Apache Ant.
 4. Nullsoft Scriptable Install System (NSIS) - [http://nsis.sourceforge.net/Download](http://nsis.sourceforge.net/Download)

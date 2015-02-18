@@ -1,0 +1,9 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Name=SwingSane
+Exec=swingsane
+Icon=swingsane
+Terminal=false
+Type=Application
+Categories=Office;Application;

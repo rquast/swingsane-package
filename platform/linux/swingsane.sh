@@ -1,8 +1,9 @@
 #!/bin/bash
 
-SWINGSANE_HOME=.
 COMMAND_PATH=`echo ${0} | sed -e "s/\(.*\)\/.*$/\1/g"`
 cd ${COMMAND_PATH}
+
+JAVA_HOME=SWINGSANE_HOME/jre
 
 if [ -z $JAVA_HOME ]; then
   JAVA_COMMAND=`which java`
@@ -17,4 +18,4 @@ if [ ! -x $JAVA_COMMAND ]; then
   echo "$JAVA_COMMAND is not executable. Please check the permissions."
   exit
 fi
-$JAVA_COMMAND -jar -Xmx1024m $SWINGSANE_HOME/lib/swingsane.jar "$1"
+$JAVA_COMMAND -jar -Xmx1024m SWINGSANE_HOME/lib/SWINGSANE_JAR "$1"

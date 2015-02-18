@@ -14,6 +14,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<vendor>Roland Quast</vendor>
+		<vendorEmail>roland@formreturn.com</vendorEmail>
 		<copyright>Copyright (c) 2014-2015 Roland Quast and Contributors.</copyright>
 		<swingSaneName>SwingSane</swingSaneName>
 		<swingSaneMainClass>com.swingsane.gui.Main</swingSaneMainClass>
@@ -301,6 +302,34 @@
 					</execution>
 			    </executions>
 			</plugin>
+			<plugin>
+				<groupId>com.stratio.mojo.unix</groupId>
+				<artifactId>unix-maven-plugin</artifactId>
+				<version>1.0-alpha-9</version>
+				<extensions>true</extensions>
+				<executions>
+					<execution>
+						<id>create-deb</id>
+						<phase>package</phase>
+						<goals>
+							<goal>package-deb-attached</goal>
+						</goals>
+						<configuration>
+							<contact>${vendor}</contact>
+							<contactEmail>${vendorEmail}</contactEmail>
+							<deb>
+								<section>graphics</section>
+							</deb>
+							<assembly>
+								<copyDirectory>
+									<from>${project.build.directory}/appbundle</from>
+									<to>/opt/swingsane</to>
+								</copyDirectory>
+							</assembly>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 		<resources>
 			<resource>
@@ -335,6 +364,11 @@
 						</lifecycleMappingMetadata>
 					</configuration>
 				</plugin>
+				<plugin>
+          <groupId>org.codehaus.mojo.unix</groupId>
+          <artifactId>unix-maven-plugin</artifactId>
+          <version>1.0-alpha-7-SNAPSHOT</version>
+        </plugin>
 			</plugins>
 		</pluginManagement>
 	</build>

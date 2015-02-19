@@ -207,6 +207,11 @@
 			
 									<option value="-Xmx1024M" name="Xmx" />
 								</bundleapp>
+								
+								<exec executable="tar" spawn="false">
+									<arg
+										line="czvf ${project.build.directory}/swingsane_macosx_x64_${project.version}.tar.gz -C ${project.build.directory}/app ." />
+								</exec>
 
 							</tasks>
 						</configuration>
@@ -342,7 +347,7 @@
 				<extensions>true</extensions>
 				<executions>
 					<execution>
-						<id>create-deb</id>
+						<id>create-ubuntu-deb-all</id>
 						<phase>package</phase>
 						<goals>
 							<goal>package-deb-attached</goal>
@@ -351,11 +356,12 @@
 							<name>SwingSane</name>
 							<contact>Roland Quast &lt;roland@formreturn.com&gt;</contact> <!-- must be "name <email>" -->
 							<contactEmail>roland@formreturn.com</contactEmail>
-							<architecture>amd64</architecture>
-							<size>174624</size> <!-- installed size in byes / 1024 -->
+							<architecture>all</architecture>
+							<size>9088</size> <!-- installed size in byes / 1024 -->
 							<description>SwingSane is a graphical scanning front-end for SANE (Scanner Access Now Easy).</description>
 							<deb>
 								<section>graphics</section>
+								<depends>default-jre</depends>
 							</deb>
 							<assembly>
 								<copyDirectory>
@@ -390,10 +396,12 @@
 									<path>${basedir}/platform/linux/SwingSane.desktop</path>
 									<toFile>/usr/share/applications/SwingSane.desktop</toFile>
 								</copyFile>
+								<!-- if need to include a jre in the future...
 								<copyFile>
 									<path>${basedir}/jre/${linux64JavaArchive}.tar.gz</path>
-									<toFile>/usr/share/swingsane/${linux64JavaArchive}.tar.gz</toFile>
+									<toFile>/usr/share/swingsane/jre.tar.gz</toFile>
 								</copyFile>
+								-->
 								<symlink>
 									<path>/usr/bin/swingsane</path>
 									<value>/usr/share/swingsane/swingsane.sh</value>

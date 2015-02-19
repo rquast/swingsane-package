@@ -3,7 +3,8 @@
 COMMAND_PATH=`echo ${0} | sed -e "s/\(.*\)\/.*$/\1/g"`
 cd ${COMMAND_PATH}
 
-JAVA_HOME=SWINGSANE_HOME/jre
+# if need to include a jre in future...
+# JAVA_HOME=SWINGSANE_HOME/jre
 
 if [ -z $JAVA_HOME ]; then
   JAVA_COMMAND=`which java`

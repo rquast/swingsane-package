@@ -1,0 +1,2 @@
+#!/bin/bash
+rm -rf /usr/share/swingsane/jre1.8.0_31 /usr/share/swingsane/jre

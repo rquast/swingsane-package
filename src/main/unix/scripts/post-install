@@ -2,5 +2,6 @@
 cd /usr/share/swingsane
 chmod +x /usr/share/swingsane/swingsane.sh
 tar zxvf /usr/share/swingsane/jre-8u31-linux-x64.tar.gz
+chown -R root:root /usr/share/swingsane/jre1.8.0_31
 ln -s /usr/share/swingsane/jre1.8.0_31 /usr/share/swingsane/jre
 rm /usr/share/swingsane/jre-8u31-linux-x64.tar.gz

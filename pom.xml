@@ -3,18 +3,25 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.swingsane</groupId>
-	<artifactId>swingsane-package</artifactId>
+	<groupId>com.swingsane.package</groupId>
+	<artifactId>swingsane</artifactId>
 	<version>0.2</version>
 	<packaging>jar</packaging>
 
-	<name>SwingSane Package Scripts</name>
+	<name>SwingSane</name>
 	<url>http://swingsane.com</url>
+	<description>SwingSane is a graphical scanning front-end for SANE (Scanner Access Now Easy).</description>
+
+	<licenses>
+		<license>
+			<name>Apache 2.0</name>
+		</license>
+	</licenses>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<vendor>Roland Quast</vendor>
-		<vendorEmail>roland@formreturn.com</vendorEmail>
+		<mojo.contact>Roland Quast &lt;roland@formreturn.com&gt;</mojo.contact>
+		<mojo.contactEmail>roland@formreturn.com</mojo.contactEmail>
 		<copyright>Copyright (c) 2014-2015 Roland Quast and Contributors.</copyright>
 		<swingSaneName>SwingSane</swingSaneName>
 		<swingSaneMainClass>com.swingsane.gui.Main</swingSaneMainClass>
@@ -88,7 +95,7 @@
 								<productVersion>${windowsVersion}</productVersion>
 								<txtProductVersion>${windowsVersion}</txtProductVersion>
 								<productName>${swingSaneName}</productName>
-								<companyName>${vendor}</companyName>
+								<companyName>Roland Quast</companyName>
 								<internalName>swingsane</internalName>
 								<originalFilename>swingsane.exe</originalFilename>
 							</versionInfo>
@@ -341,8 +348,12 @@
 							<goal>package-deb-attached</goal>
 						</goals>
 						<configuration>
-							<contact>${vendor}</contact>
-							<contactEmail>${vendorEmail}</contactEmail>
+							<name>SwingSane</name>
+							<contact>Roland Quast &lt;roland@formreturn.com&gt;</contact> <!-- must be "name <email>" -->
+							<contactEmail>roland@formreturn.com</contactEmail>
+							<architecture>amd64</architecture>
+							<size>174624</size> <!-- installed size in byes / 1024 -->
+							<description>SwingSane is a graphical scanning front-end for SANE (Scanner Access Now Easy).</description>
 							<deb>
 								<section>graphics</section>
 							</deb>
